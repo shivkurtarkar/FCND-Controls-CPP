@@ -296,36 +296,42 @@ The specific performance metrics are as follows:
 
 ## Writeup ##
 
-![image eq of force on each motor to cumulative force and moment](./misc/controller.png)
+![overall picture](./misc/controller.png)
 
-Implement calculating the motor commands given commanded thrust and moments in C++.
+## Implement calculating the motor commands given commanded thrust and moments in C++.
+
 ![image eq of force on each motor to cumulative force and moment](./misc/forces_eq.png)
-Based on the matrix we solve and get indivisual forces.
+
+From Collective thrust and rotational moments we calculate individual rotor thrust based on the above equation.
+F1: front left, F2: front right, F3: rear left, F4: rear right
+M is moment
 This is handled in `QuadControl.cpp` in [line 81-93](src/QuadControl.cpp#L81-L93).
 
-Implemented body rate control in C++.
+## Implemented body rate control in C++.
 This is handled in `QuadControl.cpp` in [line 118-119](src/QuadControl.cpp#L118-L119).
 We calculate the error between commanded pqr and curent estimated pqr, multiply it with constant and inertia to get moment command
 
-Implement roll pitch control in C++.
-![roll picth controller](./misc/roll_pitch_controller.png.png)
+## Implement roll pitch control in C++.
+
+![roll picth controller](./misc/roll_pitch_controller.png)
+
 Roll pitch controller calculates p and q componenets based on above equation.
 This is handled in `QuadControl.cpp` in [line 150-159](src/QuadControl.cpp#L150-L159).
 
-Implement altitude controller in C++.nt
+## Implement altitude controller in C++.
+
+![altitude controller](./misc/altitude_controller.png)
+
 Altitude controller is a PID controller. All 3 components, proportional–integral–derivative are calculated and we get thrust.
 This is handled in `QuadControl.cpp` in [line 191-204](src/QuadControl.cpp#L191-L204).
 
-
-Implement lateral position control in C++.
+## Implement lateral position control in C++.
 Lateral controller is a PD controller with feedback.
 This is handled in `QuadControl.cpp` in [line 242-253](src/QuadControl.cpp#L242-L253).
 
-
-Implement yaw control in C++.
+## Implement yaw control in C++.
 yaw is a simple P controller.
 This is handled in `QuadControl.cpp` in [line 277-284](src/QuadControl.cpp#L277-L284).
-
 
 ## Authors ##
 
