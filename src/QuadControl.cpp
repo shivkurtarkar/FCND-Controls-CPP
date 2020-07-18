@@ -79,6 +79,7 @@ VehicleCommand QuadControl::GenerateMotorCommands(float collThrustCmd, V3F momen
   //std::cout<<momentCmd.x<<" "<<momentCmd.y<<" "<<momentCmd.z<<std::endl;
   
   float l = L/sqrtf(2.0f);
+
   float t[4];
   t[0] = momentCmd.x / l;
   t[1] = momentCmd.y / l;
@@ -91,7 +92,6 @@ VehicleCommand QuadControl::GenerateMotorCommands(float collThrustCmd, V3F momen
   cmd.desiredThrustsN[2] = (t[0]-t[1]-t[2]+t[3])  / 4.f; // rear left
   cmd.desiredThrustsN[3] = (-t[0]-t[1]+t[2]+t[3])  / 4.f; // rear right
 
-  //std::cout<<cmd.desiredThrustsN[0]<<" "<<cmd.desiredThrustsN[0]<<" "<<cmd.desiredThrustsN[2]<<" "<<cmd.desiredThrustsN[3]<<std::endl;
   /////////////////////////////// END STUDENT CODE ////////////////////////////
 
   return cmd;
@@ -201,8 +201,8 @@ float QuadControl::AltitudeControl(float posZCmd, float velZCmd, float posZ, flo
 
   float accel = (u1Bar - CONST_GRAVITY)/R(2,2);
 
-  thrust = mass * CONSTRAIN(accel, -maxAscentRate/dt, maxAscentRate/dt);
-
+  thrust = - mass * CONSTRAIN(accel, -maxAscentRate/dt, maxAscentRate/dt);
+  // std::cout<<thrust<<std::endl;
   /////////////////////////////// END STUDENT CODE ////////////////////////////
   
   return thrust;
