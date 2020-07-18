@@ -330,7 +330,7 @@ Lateral controller is a PD controller with feedback.
 This is handled in `QuadControl.cpp` in [line 242-253](src/QuadControl.cpp#L242-L253).
 
 ## Implement yaw control in C++.
-yaw is a simple P controller.
+yaw controller is a simple P controller.
 This is handled in `QuadControl.cpp` in [line 277-284](src/QuadControl.cpp#L277-L284).
 
 ## Authors ##
